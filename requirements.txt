@@ -1,7 +1,7 @@
 numpy
 pandas
-tensorflow
-tqdm
 matplotlib
 plotly
+tensorflow
+jupyter
 git+https://github.com/chsasank/image_features.git
