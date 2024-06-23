@@ -1,8 +1,6 @@
 # Use an official Python runtime as a parent image
 FROM python:3.12.0-slim
-
  
-
 # Install git (needed if you are pulling packages from git repositories)
 RUN apt-get update && apt-get install -y git
 
@@ -12,6 +10,9 @@ WORKDIR /usr/src/app
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
+# Copy the Jupyter server configuration file into the container
+COPY C:/Users/USERNAME/.jupyter/jupyter_server_config.py /root/.jupyter/jupyter_server_config.py
+
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -19,4 +20,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8888
 
 # Run Jupyter Notebook
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+CMD ["jupyter", "notebook", "--config=/root/.jupyter/jupyter_server_config.py"]
